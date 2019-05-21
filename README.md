@@ -3,6 +3,7 @@
 ## Table of Contents
 - Task A : Font missing word learning
 - Task B : Write to Font Transfer
+- (Optional) : Font Minecraft
 
 ## Task A : Font missing word learning
 ### Prior Works
