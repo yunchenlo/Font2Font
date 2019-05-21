@@ -21,3 +21,6 @@
 
 ## Other Prior Works
 * 運用GAN實現字體風格轉換[(slideshare)](https://www.slideshare.net/cnanews/gan-137298578)
+
+### Project Members
+- Yun-Chen Lo, Yi-Ren Chen, Jerry Zhang Jiang (NTHU EE)
