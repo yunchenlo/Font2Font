@@ -26,5 +26,8 @@
 * Rewrite: Neural Style Transfer For Chinese Fonts[.(website)](https://github.com/kaonashi-tyc/Rewrite)
 * zi2zi: Master Chinese Calligraphy with Conditional Adversarial Networks[.(website)](https://github.com/kaonashi-tyc/zi2zi)
 
+## Background Knowledge
+* Neural Style Transfer [medium](https://towardsdatascience.com/neural-style-transfer-tutorial-part-1-f5cd3315fa7f)
+
 ### Project Members
 - Yun-Chen Lo, Yi-Ren Chen, Jerry Zhang Jiang (NTHU EE)
