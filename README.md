@@ -13,6 +13,8 @@
 ## Task A : Font missing word learning
 ### Prior Works
 
+* [Chinese Handwriting Imitation with HGAN](http://bmvc2018.org/contents/papers/1141.pdf)
+
 ### Datasets
 
 ### Githubs
