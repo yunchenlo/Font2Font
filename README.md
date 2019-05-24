@@ -1,5 +1,10 @@
 # Font.py
 
+## 0524 Conclusion
+- Train zi2zi and analyze the results using pix2pix.
+- Train zi2zi and analyze results using Cycle-GAN.
+- Use other architecture to see the result differences. 
+
 ## Table of Contents
 - Task A : Font missing word learning
 - Task B : Write to Font Transfer
