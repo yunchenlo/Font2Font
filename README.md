@@ -30,6 +30,7 @@
 * 以類神經網路對手寫漢字與書法字體作風格遷移[.(website)](http://ludwig.willyoudo.com/?p=1219)
 * Rewrite: Neural Style Transfer For Chinese Fonts[.(website)](https://github.com/kaonashi-tyc/Rewrite)
 * zi2zi: Master Chinese Calligraphy with Conditional Adversarial Networks[.(website)](https://github.com/kaonashi-tyc/zi2zi)
+* [Generating Handwritten Chinese Characters using CycleGAN](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8354132)
 
 ## Background Knowledge
 * Neural Style Transfer [medium](https://towardsdatascience.com/neural-style-transfer-tutorial-part-1-f5cd3315fa7f)
