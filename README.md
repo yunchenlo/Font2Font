@@ -17,20 +17,10 @@
 
 ## Task A : Font missing word learning
 ### Prior Works
-
 * [Chinese Handwriting Imitation with HGAN](http://bmvc2018.org/contents/papers/1141.pdf)
-
-### Datasets
-
-### Githubs
 
 ## Task B : Write to Font Transfer
 
-### Prior Works
-
-### Datasets
-
-### Githubs
 
 ## Other Prior Works
 * 運用GAN實現字體風格轉換[(slideshare)](https://www.slideshare.net/cnanews/gan-137298578)
