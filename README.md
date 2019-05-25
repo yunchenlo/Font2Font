@@ -1,5 +1,10 @@
 # Font.py
 
+## 0525 TODO
+- Find ways to augment few training data (Yun-Chen Lo)
+- Replace Generator & Descriminator part architecture (Jerry)
+- Hierarchical GAN implementation (Chen Yi-Ren)
+
 ## 0524 Conclusion
 - Train FontMissing and analyze the results using pix2pix.
 - Train FontMissing and analyze results using Cycle-GAN.
