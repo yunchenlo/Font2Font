@@ -13,6 +13,8 @@
 ## Task A : Font missing word learning
 ### Prior Works
 
+* [Chinese Handwriting Imitation with HGAN](http://bmvc2018.org/contents/papers/1141.pdf)
+
 ### Datasets
 
 ### Githubs
@@ -31,6 +33,10 @@
 * Rewrite: Neural Style Transfer For Chinese Fonts[.(website)](https://github.com/kaonashi-tyc/Rewrite)
 * zi2zi: Master Chinese Calligraphy with Conditional Adversarial Networks[.(website)](https://github.com/kaonashi-tyc/zi2zi)
 * [Generating Handwritten Chinese Characters using CycleGAN](https://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=8354132)
+* [Handwritten Chinese Font Generation with Collaborative Stroke Refinement](https://arxiv.org/pdf/1904.13268.pdf)
+* [Separating Style and Content for Generalized Style Transfer](https://arxiv.org/pdf/1711.06454.pdf)
+* [Chinese Handwriting Imitation with Hierarchical Generative Adversarial Network](http://bmvc2018.org/contents/papers/1141.pdf)
+* [Auto-Encoder Guided GAN for Chinese Calligraphy Synthesis](https://arxiv.org/pdf/1706.08789.pdf)
 
 ## Background Knowledge
 * Neural Style Transfer [medium](https://towardsdatascience.com/neural-style-transfer-tutorial-part-1-f5cd3315fa7f)
