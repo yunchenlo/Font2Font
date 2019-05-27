@@ -40,6 +40,7 @@
 * [Chinese Handwriting Imitation with Hierarchical Generative Adversarial Network](http://bmvc2018.org/contents/papers/1141.pdf)
 * [Auto-Encoder Guided GAN for Chinese Calligraphy Synthesis](https://arxiv.org/pdf/1706.08789.pdf)
 * [Chinese Typeface Transformation with Hierarchical Adversarial Network](https://arxiv.org/pdf/1711.06448.pdf)
+* [SCFont: Structure-guided Chinese Font Generation via Deep Stacked Networks](http://www.icst.pku.edu.cn/zlian/docs/2019-01/20190122112100781376.pdf)
 
 ## Background Knowledge
 * Neural Style Transfer [medium](https://towardsdatascience.com/neural-style-transfer-tutorial-part-1-f5cd3315fa7f)
