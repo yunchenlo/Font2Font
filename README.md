@@ -1,9 +1,25 @@
 # Font.py
 
+## 0530 TODO (Deadline: 6/2)
+- Generate Handwriting dataset (Find Resources)
+- Enlarge gap between source & target (新細明體 -> others) (Jerry 新細明體 master)
+  - Fix target & inference on new font (新細明體)
+  - Train on new source target fonts
+- Modify Cheat Loss (Chen Yi-Ren)
+- Find ways to augment few training data (Yun-Chen Lo) 
+  - Bold Font
+  - Break 部首
+- Transfer Learning (all)
+
 ## 0525 TODO
-- Find ways to augment few training data (Yun-Chen Lo)
-- Replace Generator & Descriminator part architecture (Jerry)
+- Find ways to augment few training data (Yun-Chen Lo) 
+  - Bold Font
+  - Scale & Crop (done)
+  - Break 部首
+- Replace Generator & Descriminator part architecture (Jerry) (don't do)
 - Hierarchical GAN implementation (Chen Yi-Ren)
+  - Hierarchical Discriminator (done)
+  - Generator t1,t2,t3 (Hierarchical Generator) (done)
 
 ## 0524 Conclusion
 - Train FontMissing and analyze the results using pix2pix.
