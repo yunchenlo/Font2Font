@@ -163,14 +163,6 @@ class UNet(object):
             return d_fc, cat_fc0, cat_fc1, cat_fc2, cat_fc3 
             
             '''
-            fc0 = fc(tf.reshape(h0, [self.batch_size, -1]), 1, scope="d_fc0")
-            fc1 = fc(tf.reshape(h1, [self.batch_size, -1]), 1, scope="d_fc1")
-            fc2 = fc(tf.reshape(h2, [self.batch_size, -1]), 1, scope="d_fc2")
-            fc3 = fc(tf.reshape(h3, [self.batch_size, -1]), 1, scope="d_fc3")
-            cat_fc = fc(tf.reshape(h3, [self.batch_size, -1]), self.embedding_num, scope="d_cat_fc")
-            return fc0, fc1, fc2, fc3, cat_fc
-            '''
-            '''
             # real or fake binary loss
             fc1 = fc(tf.reshape(h3, [self.batch_size, -1]), 1, scope="d_fc1")
             # category loss
@@ -212,12 +204,7 @@ class UNet(object):
         # initialize all variables before setting reuse to True
         #real_D, real_D_logits, real_category_logits = self.discriminator(real_AB, is_training=is_training, reuse=False)
         #fake_D, fake_D_logits, fake_category_logits = self.discriminator(fake_AB, is_training=is_training, reuse=True)
-        '''
-        real_D0, real_D1, real_D2, real_D3, real_cat_D = self.discriminator(real_AB, is_training=is_training, reuse=False)
-        fake_D0, fake_D1, fake_D2, fake_D3, fake_cat_D = self.discriminator(fake_AB, is_training=is_training, reuse=True)
-        fake_D0_T1, fake_D1_T1, fake_D2_T1, fake_D3_T1, fake_cat_D_T1 = self.discriminator(fake_AB_T1, is_training=is_training, reuse=True)
-        fak_D0e_T2, fake_D1_T2, fake_D2_T2, fake_D3_T2, fake_cat_D_T2 = self.discriminator(fake_AB_T2, is_training=is_training, reuse=True)
-        '''
+
         #d_fc, cat_fc0, cat_fc1, cat_fc2, cat_fc3
         real_D0, real_cat_D0, real_cat_D1, real_cat_D2, real_cat_D3 = self.discriminator(real_AB, is_training=is_training, reuse=False)
         fake_D0, fake_cat_D0, fake_cat_D1, fake_cat_D2, fake_cat_D3 = self.discriminator(fake_AB, is_training=is_training, reuse=True)
@@ -234,13 +221,6 @@ class UNet(object):
         # category loss
         true_labels = tf.reshape(tf.one_hot(indices=embedding_ids, depth=self.embedding_num),
                                  shape=[self.batch_size, self.embedding_num])
-        '''
-        real_category_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_category_logits,
-                                                                                    labels=true_labels))
-        fake_category_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_category_logits,
-                                                                                    labels=true_labels))
-        category_loss = self.Lcategory_penalty * (real_category_loss + fake_category_loss)
-        '''
 
         real_category_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_cat_D0,
                                                                                     labels=true_labels))
@@ -284,43 +264,15 @@ class UNet(object):
         #                                                                     labels=tf.ones_like(real_D)))
         #d_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D_logits,
         #                                                                     labels=tf.zeros_like(fake_D)))
-        '''                                                                     
-        d_loss_real0 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_D0,
-                                                                              labels=tf.ones_like(tf.nn.sigmoid(real_D0))))
-        d_loss_real1 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_D1,
-                                                                              labels=tf.ones_like(tf.nn.sigmoid(real_D1))))
-        d_loss_real2 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_D2,
-                                                                              labels=tf.ones_like(tf.nn.sigmoid(real_D2))))
-        d_loss_real3 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_D3,
-                                                                              labels=tf.ones_like(tf.nn.sigmoid(real_D3))))
-        d_loss_real = d_loss_real0 + d_loss_real1 + d_loss_real2 + d_loss_real3
-        '''
+
         d_loss_real = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=real_D0,
                                                                              labels=tf.ones_like(tf.nn.sigmoid(real_D0))))
-        '''
-        d_loss_fake0 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D0,
-                                                                              labels=tf.zeros_like(tf.nn.sigmoid(fake_D0))))
-        d_loss_fake1 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D1,
-                                                                              labels=tf.zeros_like(tf.nn.sigmoid(fake_D1))))
-        d_loss_fake2 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D2,
-                                                                              labels=tf.zeros_like(tf.nn.sigmoid(fake_D2))))                                                                      
-        
-        d_loss_fake3 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D3,
-                                                                              labels=tf.zeros_like(tf.nn.sigmoid(fake_D3))))
-        d_loss_fake3_T1 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_T1_D3,
-                                                                              labels=tf.zeros_like(tf.nn.sigmoid(fake_T1_D3))))
-        d_loss_fake3_T2 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_T2_D3,
-                                                                              labels=tf.zeros_like(tf.nn.sigmoid(fake_T2_D3))))
-        #d_loss_fake = d_loss_fake0 + d_loss_fake1 + d_loss_fake2 + d_loss_fake3
-        d_loss_fake = d_loss_fake3 + (d_loss_fake3_T1 + d_loss_fake3_T2)
-        '''
+
         d_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D0,
                                                                              labels=tf.zeros_like(tf.nn.sigmoid(fake_D0))))
 
         # L1 loss between real and generated images
         l1_loss = self.L1_penalty * tf.reduce_mean(tf.abs(fake_B - real_B))
-        #l1_loss += self.L1_penalty * tf.reduce_mean(tf.abs(fake_B_T1 - real_B))     # Hierachical ???
-        #l1_loss += self.L1_penalty * tf.reduce_mean(tf.abs(fake_B_T2 - real_B))     # Hierachical ???
 
         # total variation loss
         width = self.output_width
@@ -333,19 +285,7 @@ class UNet(object):
                                                                             
         cheat_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D0,
                                                                             labels=tf.ones_like(tf.nn.sigmoid(fake_D0))))
-        '''
-        cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D1,
-                                                                            labels=tf.ones_like(tf.nn.sigmoid(fake_D1))))
-        cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D2,
-                                                                            labels=tf.ones_like(tf.nn.sigmoid(fake_D2))))
-        
-        cheat_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_D3,
-                                                                            labels=tf.ones_like(tf.nn.sigmoid(fake_D3))))
-        cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_T1_D3,
-                                                                            labels=tf.ones_like(tf.nn.sigmoid(fake_T1_D3))))                                                                    
-        cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=fake_T2_D3,
-                                                                            labels=tf.ones_like(tf.nn.sigmoid(fake_T2_D3))))
-        '''
+
         d_loss = d_loss_real + d_loss_fake + category_loss / 2.0
         g_loss = cheat_loss + l1_loss + self.Lcategory_penalty * fake_category_loss + const_loss + tv_loss
 
@@ -387,32 +327,14 @@ class UNet(object):
             
             d_loss_no_target0 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D0,
                                                                                        labels=tf.zeros_like(tf.nn.sigmoid(no_target_D0))))
-            '''
-            d_loss_no_target1 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D1,
-                                                                                       labels=tf.zeros_like(tf.nn.sigmoid(no_target_D1))))                                                                    
-            d_loss_no_target2 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D2,
-                                                                                       labels=tf.zeros_like(tf.nn.sigmoid(no_target_D2))))
-            
-            d_loss_no_target3 = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D3,
-                                                                                       labels=tf.zeros_like(tf.nn.sigmoid(no_target_D3))))
-            #d_loss_no_target = d_loss_no_target0 + d_loss_no_target1 + d_loss_no_target2 + d_loss_no_target3
-            '''
+
             d_loss_no_target = d_loss_no_target0
 
             #cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D_logits,
             #                                                                     labels=tf.ones_like(no_target_D)))
             
             cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D0,
-                                                                                 labels=tf.ones_like(tf.nn.sigmoid(no_target_D0))))
-            '''                                                                     
-            cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D1,
-                                                                                 labels=tf.ones_like(tf.nn.sigmoid(no_target_D1))))                                                                     
-            cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D2,
-                                                                                 labels=tf.ones_like(tf.nn.sigmoid(no_target_D2))))
-            
-            cheat_loss += tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(logits=no_target_D3,
-                                                                                 labels=tf.ones_like(tf.nn.sigmoid(no_target_D3))))
-            '''                                                                     
+                                                                                 labels=tf.ones_like(tf.nn.sigmoid(no_target_D0))))                                                                   
 
             d_loss = d_loss_real + d_loss_fake + d_loss_no_target + (category_loss + no_target_category_loss) / 3.0
             g_loss = cheat_loss / 2.0 + l1_loss + \
