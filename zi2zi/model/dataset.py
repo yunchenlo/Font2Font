@@ -8,7 +8,7 @@ import random
 import os
 from .utils import pad_seq, bytes_to_file, \
     read_split_image, shift_and_resize_image, normalize_image, rotate_image
-
+import scipy.ndimage as ndimage
 
 class PickledImageProvider(object):
     def __init__(self, obj_path):
@@ -32,7 +32,7 @@ class PickledImageProvider(object):
             return examples
 
 
-def get_batch_iter(examples, batch_size, augment, rotate=False, bold=False):
+def get_batch_iter(examples, batch_size, augment, rotate=False, bold=False, blur=False):
     # the transpose ops requires deterministic
     # batch size, thus comes the padding
     padded = pad_seq(examples, batch_size)
@@ -66,7 +66,12 @@ def get_batch_iter(examples, batch_size, augment, rotate=False, bold=False):
                     random_angle = random.choice(angle_list)
                     img_A = rotate_image(img_A, random_angle)
                     img_B = rotate_image(img_B, random_angle)
-                    
+
+                if blur:
+                    if random.uniform(0.0, 1.0) > 0.5:
+                        sigma_list = [3, 5, 11]
+                        img_A = ndimage.gaussian_filter(img_A, sigma=random.choice(sigma_list))
+
             img_A = normalize_image(img_A)
             img_B = normalize_image(img_B)
             return np.concatenate([img_A, img_B], axis=2)
