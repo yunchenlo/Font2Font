@@ -7,7 +7,7 @@ import numpy as np
 import random
 import os
 from .utils import pad_seq, bytes_to_file, \
-    read_split_image, shift_and_resize_image, normalize_image
+    read_split_image, shift_and_resize_image, normalize_image, rotate_image
 
 
 class PickledImageProvider(object):
