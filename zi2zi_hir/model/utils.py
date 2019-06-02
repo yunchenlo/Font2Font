@@ -50,6 +50,10 @@ def shift_and_resize_image(img, shift_x, shift_y, nw, nh):
     enlarged = misc.imresize(img, [nw, nh])
     return enlarged[shift_x:shift_x + w, shift_y:shift_y + h]
 
+def rotate_image(img, angle):
+    w, h, _ = img.shape
+    img_rotate = misc.imrotate(img, angle, interp="bilinear")
+    return img_rotate
 
 def scale_back(images):
     return (images + 1.) / 2.

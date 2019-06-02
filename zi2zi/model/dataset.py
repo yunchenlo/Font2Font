@@ -32,7 +32,7 @@ class PickledImageProvider(object):
             return examples
 
 
-def get_batch_iter(examples, batch_size, augment):
+def get_batch_iter(examples, batch_size, augment, rotate=False, bold=False):
     # the transpose ops requires deterministic
     # batch size, thus comes the padding
     padded = pad_seq(examples, batch_size)
@@ -48,7 +48,11 @@ def get_batch_iter(examples, batch_size, augment):
                 # NOTE: image A and B needs to be in sync as how much
                 # to be shifted
                 w, h, _ = img_A.shape
-                multiplier = random.uniform(1.00, 1.20)
+                scale_upbound = 1.2
+                if bold:
+                    scale_upbound = 2.0
+                
+                multiplier = random.uniform(1.00, scale_upbound)
                 # add an eps to prevent cropping issue
                 nw = int(multiplier * w) + 1
                 nh = int(multiplier * h) + 1
@@ -56,6 +60,13 @@ def get_batch_iter(examples, batch_size, augment):
                 shift_y = int(np.ceil(np.random.uniform(0.01, nh - h)))
                 img_A = shift_and_resize_image(img_A, shift_x, shift_y, nw, nh)
                 img_B = shift_and_resize_image(img_B, shift_x, shift_y, nw, nh)
+                
+                if rotate:
+                    angle_list = [0, 90, 180, 270]
+                    random_angle = random.choice(angle_list)
+                    img_A = rotate_image(img_A, random_angle)
+                    img_B = rotate_image(img_B, random_angle)
+                    
             img_A = normalize_image(img_A)
             img_B = normalize_image(img_B)
             return np.concatenate([img_A, img_B], axis=2)
@@ -91,7 +102,7 @@ class TrainDataProvider(object):
         training_examples = self.train.examples[:]
         if shuffle:
             np.random.shuffle(training_examples)
-        return get_batch_iter(training_examples, batch_size, augment=True)
+        return get_batch_iter(training_examples, batch_size, augment=True, rotate=True, bold=False)
 
     def get_val_iter(self, batch_size, shuffle=True):
         """
