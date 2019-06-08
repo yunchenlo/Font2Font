@@ -1,5 +1,12 @@
 # Font.py
 
+## How to solve Generator Failure from XXM to target font
+1. increase dataset picture number
+2. increase complexity of discriminator
+3. pretrain from (input:target font, output:target font) to ensure the generator initial state is correct
+4. create new loss term
+
+
 ## 0530 TODO (Deadline: 6/2)
 - Generate Handwriting dataset (Find Resources)
 - Enlarge gap between source & target (新細明體 -> others) (Jerry 新細明體 master)
