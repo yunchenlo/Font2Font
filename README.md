@@ -1,10 +1,10 @@
 # Font.py
 
 ## How to solve Generator Failure from XXM to target font
-1. increase dataset picture number
-2. increase complexity of discriminator
-3. pretrain from (input:target font, output:target font) to ensure the generator initial state is correct
-4. create new loss term
+1. Increase dataset picture number
+2. Increase complexity of discriminator
+3. Pretrain from (input:target font, output:target font) to ensure the generator initial state is correct
+4. Create new loss term
 5. Find who cause the failure(encoder or generator)
 
 
