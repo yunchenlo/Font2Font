@@ -5,6 +5,7 @@
 2. increase complexity of discriminator
 3. pretrain from (input:target font, output:target font) to ensure the generator initial state is correct
 4. create new loss term
+5. Find who cause the failure(encoder or generator)
 
 
 ## 0530 TODO (Deadline: 6/2)
