@@ -5,8 +5,8 @@
 2. Increase complexity of discriminator or encoder and generator (Yi-Ren, Jerry)
 3. Pretrain from (input:target font, output:target font) to ensure the generator initial state is correct (Jerry) 
 4. Apply pretrained model to new dataset(Yi-Ren)
-5. Create new loss term
-6. Find who cause the failure(encoder or generator) (Jason)
+5. Create new loss term (yclo)
+6. Find who cause the failure(encoder or generator) (yclo)
 
 
 ## 0530 TODO (Deadline: 6/2)
