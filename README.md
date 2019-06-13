@@ -1,5 +1,23 @@
 # Font.py
 
+## 6/18 Final round
+1. Report (5 pages)
+   - survey 
+   - encountered problem
+   - contribution
+      - data augmentation (unlike generated sample and some noise)
+      - hierarchical (unlike generated sample and some noise)
+      - transfer learning (mode collapse)
+      - enhance discriminator (mode collapse)
+   - experiment (batch size: 16, epoch:100, lr:0.001, L1: 100, Lconst:15)
+      - XXM_STZMF : raw zi2zi -> hierarchical -> data aug. -> transfer learning -> enhance discriminator
+      - BIAUKAI_STZMF : raw zi2zi -> hierarchical -> data aug.
+     
+   - extra detail results in cloud
+2. slides
+3. source code
+4. hand-writing word
+
 ## How to solve Generator Failure from XXM to target font
 1. Increase dataset picture number (3000 -> 6000)
 2. Increase complexity of discriminator or encoder and generator (Yi-Ren, Jerry)
