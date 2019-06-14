@@ -49,8 +49,9 @@ def get_batch_iter(examples, batch_size, augment, rotate=False, bold=False, blur
                 # to be shifted
                 w, h, _ = img_A.shape
                 scale_upbound = 1.2
+
                 if bold:
-                    scale_upbound = 2.0
+                    scale_upbound = 1.4
                 
                 multiplier = random.uniform(1.00, scale_upbound)
                 # add an eps to prevent cropping issue
@@ -62,15 +63,17 @@ def get_batch_iter(examples, batch_size, augment, rotate=False, bold=False, blur
                 img_B = shift_and_resize_image(img_B, shift_x, shift_y, nw, nh)
                 
                 if rotate:
-                    angle_list = [0, 90, 180, 270]
+                    angle_list = [0, 180]
                     random_angle = random.choice(angle_list)
                     img_A = rotate_image(img_A, random_angle)
                     img_B = rotate_image(img_B, random_angle)
 
                 if blur:
-                    if random.uniform(0.0, 1.0) > 0.5:
-                        sigma_list = [3, 5, 11]
-                        img_A = ndimage.gaussian_filter(img_A, sigma=random.choice(sigma_list))
+                    if random.uniform(0.0, 1.0) > 0.8:
+                        sigma_list = [1, 1.5, 2]
+                        sigma = random.choice(sigma_list)
+                        img_A = ndimage.gaussian_filter(img_A, sigma=sigma)
+                        img_B = ndimage.gaussian_filter(img_B, sigma=sigma)
 
             img_A = normalize_image(img_A)
             img_B = normalize_image(img_B)
@@ -107,7 +110,7 @@ class TrainDataProvider(object):
         training_examples = self.train.examples[:]
         if shuffle:
             np.random.shuffle(training_examples)
-        return get_batch_iter(training_examples, batch_size, augment=True, rotate=True, bold=False)
+        return get_batch_iter(training_examples, batch_size, augment=True, rotate=False, bold=True, blur=True)
 
     def get_val_iter(self, batch_size, shuffle=True):
         """
