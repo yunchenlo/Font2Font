@@ -11,7 +11,7 @@ This repo is based on zi2zi project with incremental boost inspired on recent re
 ```
 Font2Font
 |	README.md
-└── src/
+└──	src/
 |	└── zi2zi					# original zi2zi with data aug options
 |	└── zi2zi_hir					# + combine levels of features
 |	└── zi2zi_hir_dis				# + increase discriminator complexity
@@ -19,6 +19,8 @@ Font2Font
 |	PastDiscussion/
 |	PriorWork/
 |	Report/
+|	└── Interim/
+|	└── Final/
 ```
 
 ## Code Running Example
