@@ -24,7 +24,11 @@ Font2Font
 ```
 
 ## Code Running Example
-
+```
+Train zi2zi 
+change directory to src/zi2zi;
+$ make all // prepare data, train, and evaluate on demo word
+```
 
 ## Dependency
 - tensorflow 0.8

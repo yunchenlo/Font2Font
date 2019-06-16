@@ -1,11 +1,16 @@
+# Variables
+SRCFONT = BIAUKAI
+TARFONT = STZMF
+BATCH = 32
+
 # prepare dataset
 prepare:
 	ls # temporary
 # train the UNET
 train: prepare
-	python train.py --experiment_dir=BIAUKAI_STZMF_6000/ \
+	python train.py --experiment_dir=$(SRCFONT)_$(TARFONT)_6000/ \
 					--experiment_id=0 \
-					--batch_size=32 \
+					--batch_size=$(BATCH) \
 					--lr=0.001 \
 					--epoch=100 \
 					--sample_steps=50 \
@@ -16,9 +21,9 @@ train: prepare
 
 # eval the unet with our data
 eval: train prepare
-	python infer.py --model_dir=BIAUKAI_STZMF_6000/checkpoint/experiment_0_batch_32/ \
+	python infer.py --model_dir=$(SRCFONT)_$(TARFONT)_6000/checkpoint/experiment_0_batch_32/ \
                 --batch_size=1 \
-                --source_obj=demo_sample/BIAUKAI_STZMF/obj/val.obj \
+                --source_obj=demo_sample/$(SRCFONT)_$(TARFONT)/obj/val.obj \
                 --embedding_ids=0 \
                 --save_dir=test_save \
                 --gpu 0
