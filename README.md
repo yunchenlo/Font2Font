@@ -12,10 +12,10 @@ This repo is based on zi2zi project with incremental boost inspired on recent re
 Font2Font
 |	README.md
 └──	src/
-|	└── zi2zi					# original zi2zi with data aug options
-|	└── zi2zi_hir					# + combine levels of features
-|	└── zi2zi_hir_dis				# + increase discriminator complexity
-|	└── zi2zi_hir_morefilter			# + alternative ways of complexity boost
+|	└── zi2zi/					# original zi2zi with data aug options
+|	└── zi2zi_hir/					# + combine levels of features
+|	└── zi2zi_hir_dis/				# + increase discriminator complexity
+|	└── zi2zi_hir_morefilter/			# + alternative ways of complexity boost
 |	PastDiscussion/
 |	PriorWork/
 |	Report/

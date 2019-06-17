@@ -20,7 +20,7 @@ train: prepare
 					--gpu 0
 
 # eval the unet with our data
-eval: train prepare
+eval: prepare
 	python infer.py --model_dir=$(SRCFONT)_$(TARFONT)_6000/checkpoint/experiment_0_batch_32/ \
                 --batch_size=1 \
                 --source_obj=demo_sample/$(SRCFONT)_$(TARFONT)/obj/val.obj \
