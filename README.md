@@ -35,11 +35,18 @@ $ make all // prepare data, train, and evaluate on demo word
 - python 3.x
 
 ## Major contributions
+![alt text](https://i.imgur.com/RqkXm2Y.png)
 ### Word-oriented data augmentation
-
+![alt text](https://i.imgur.com/ysV0Yqc.png)
 ### Combine different level feature 
-
+![alt text](https://i.imgur.com/jjym664.png)
 ### Transfer Learning
+![alt text](https://i.imgur.com/9RCz2yg.png)
+### Difficulty-aware adjustment
+![alt text](https://i.imgur.com/tq1pbOu.png)
+
+## Result
+![alt text](https://i.imgur.com/2zaQnOI.png)
 
 ## Future Work
 ### Add code or tools to generate compatible Chinese font (.ttf)
